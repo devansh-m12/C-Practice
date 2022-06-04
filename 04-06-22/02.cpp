@@ -4,15 +4,20 @@ using namespace std;
 int main(){
     int n;
     cin>>n;
-    int i = 1;
-    while(i<=n){
-        int j = 1;
-        while (j<=n){
-            char x = 'A'+i-1;
-            cout<<x;
-            j = j+1;
-        }
-        cout<<endl;
-        i = i+1;
+    while(n--){
+        int a,b,x,y , p , q ;
+	cin>>a>>b>>x>>y;
+	 p = max(a,b);
+	 q = max(x,y);
+	 if(p>q){
+	     cout<<p<<endl;
+	 }
+	 else if(q>p){
+	     cout<<q<<endl;
+	 }
+	 else{
+	     cout<<"TIE"<<endl;
+	 }
+	
     }
 }

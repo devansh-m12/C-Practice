@@ -2,22 +2,30 @@
 #include <limits.h>
 using namespace std;
 
-void unique(int num[], int size ){
-    int z = 0;
-    for (int i = 0; i<size ; i++){
-        
-    }
-    return z ;
+void diuv(int num[], int size ){
+    
 } 
 
 int main(){
-    int size ;
-    cin>> size;
-
-    int num[100];
-
-    for(int i = 0;i<size;i++){
-        cin>>num[i];
+    int x;
+    cin>>x;
+    int start;
+    if (x%2 == 0){
+       start = x/2;
     }
-    unique(num , size) ;
+    else{
+       start = (x/2)+1;
+    }
+
+    for (int i = 0 ; i<x ; i++)
+    {
+        if (i%2 == 0){
+           start = start + i;
+           cout<<start<<" ";
+        }
+        else{
+           start = start - i ;
+           cout<<start<<" ";
+        }
+    }
 }

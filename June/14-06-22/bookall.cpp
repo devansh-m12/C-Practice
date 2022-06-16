@@ -1,50 +1,59 @@
-#include<iostream> 
+#include<vector>
 using namespace std;
 
-int getPivot(int arr[]) {
-
-    int s = 0;
-    int e = arr.size() - 1;
-    int mid = s + (e-s)/2;
-
-    while(s<e) {
-
-        if(arr[mid] >= arr[0])
-        {
-            s = mid+1;
+bool isPossible(vector<int> arr, int n, int m, int mid) {
+    int studentCount = 1;
+    int pageSum = 0;
+    //cout << "checking for mid "<< mid <<endl;
+    
+    for(int i = 0; i<n; i++) {
+        if(pageSum + arr[i] <= mid) {
+            pageSum += arr[i];
         }
-        else{
-            e = mid;
+        else
+        {
+            studentCount++;
+            if(studentCount > m || arr[i] > mid ) {
+            return false;
+        }
+            pageSum = arr[i];
+        }
+        if(studentCount > m) {
+            return false;
+        }
+        //cout << " for i " << i << " Student "<< studentCount << " pageSum " << pageSum << endl;
+    }
+    return true;
+}
+
+int allocateBooks(vector<int> arr, int n, int m) {
+    int s = 0;
+    int sum = 0;
+    
+    for(int i = 0; i<n; i++) {
+        sum += arr[i];
+    }
+    int e = sum;
+    int ans = -1;
+    int mid = s + (e-s)/2;
+    
+    while(s<=e)
+    {
+        if(isPossible(arr,n,m,mid)) {
+            //cout<<" Mid returned TRUE" << endl;
+            ans = mid;
+            e = mid - 1;
+        }
+        else
+        {
+            s = mid + 1;
         }
         mid = s + (e-s)/2;
     }
-    return s;
-}
-
-int binarysearch(int arr[] , int key){
-    int start = 0;
-    int end = size-1;
-    int mid = start +(end - start)/2; // for int_max limit
-
-    while (start<=end)
-    {
-        if(arr[mid] == key) {
-            return mid;
-        }
-        else if(key>arr[mid]){
-            start = mid+1;
-        }
-        else{
-            end = mid-1;
-        }
-       mid = start +(end - start)/2;
-    }
-
-    return -1;
-    
+    return ans;
 }
 
 int main() {
     int arr[7] = {2 , 2 , 3 , 3 , 4 , 4 , 1};
-    cout << "Pivot is " << getPivot(arr, 7) << endl;
+    cout << "Pivot is " << allocateBooks(arr, 7) << endl;
 }

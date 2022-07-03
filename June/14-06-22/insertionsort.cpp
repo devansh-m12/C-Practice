@@ -20,7 +20,11 @@ int insesort(int arr[],int n){
 
 
 int main(){
-  const int size = 7;
-  int arr[size] = {8,22,7,9,31,5,13};
-  cout<<insesort(arr,size);
+  const int size = 15;
+  int arr[size] = {8,22,7,9 , 9,1,1,1,3,4,5,5,31,5,13};
+  insesort(arr,size);
+
+  for(int i = 0;i<15;i++){
+    cout<<arr[i]<<" ";
+  }
 }
